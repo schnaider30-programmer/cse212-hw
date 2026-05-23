@@ -1,5 +1,3 @@
-using System.Collections;
-
 public static class Recursion
 {
     /// <summary>

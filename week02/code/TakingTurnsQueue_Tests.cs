@@ -12,6 +12,7 @@ public class TakingTurnsQueueTests
     // run until the queue is empty
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+    // Items was inserted at the front of the queue when it should be at the back
     public void TestTakingTurnsQueue_FiniteRepetition()
     {
         var bob = new Person("Bob", 2);
@@ -86,6 +87,8 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
+    //Result: Expected:<Tim>. Actual:<Sue>.
+    //Error: This is incorrect because turns <= 0 should mean infinite turns (they should stay in the queue forever). The logic currently treats them as “out of turns” instead of “infinite.”
     public void TestTakingTurnsQueue_ForeverZero()
     {
         var timTurns = 0;
@@ -117,6 +120,8 @@ public class TakingTurnsQueueTests
     // Run 10 times.
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
     // Defect(s) Found: 
+    //Result: Assert.AreEqual failed. Expected:<-3>. Actual:<0>. People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite.
+    //Error: When turns was not superior to zero, the program assign it a default value of 0 because I did not assign the paramater turn to Turn variable inside the Person class.
     public void TestTakingTurnsQueue_ForeverNegative()
     {
         var timTurns = -3;

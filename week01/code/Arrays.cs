@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 public static class Arrays
 {
     /// <summary>
