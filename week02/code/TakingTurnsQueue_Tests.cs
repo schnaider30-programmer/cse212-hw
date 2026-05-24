@@ -12,7 +12,7 @@ public class TakingTurnsQueueTests
     // run until the queue is empty
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
     // Defect(s) Found: 
-    // Items was inserted at the front of the queue when it should be at the back
+    // Items was inserted to the Front of the queue when it should be add to the Back. But this was fixed.
     public void TestTakingTurnsQueue_FiniteRepetition()
     {
         var bob = new Person("Bob", 2);
@@ -45,6 +45,7 @@ public class TakingTurnsQueueTests
     // After running 5 times, add George with 3 turns.  Run until the queue is empty.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, George, Sue, Tim, George, Tim, George
     // Defect(s) Found: 
+    //No defect found
     public void TestTakingTurnsQueue_AddPlayerMidway()
     {
         var bob = new Person("Bob", 2);
@@ -86,9 +87,9 @@ public class TakingTurnsQueueTests
     // Scenario: Create a queue with the following people and turns: Bob (2), Tim (Forever), Sue (3)
     // Run 10 times.
     // Expected Result: Bob, Tim, Sue, Bob, Tim, Sue, Tim, Sue, Tim, Tim
-    // Defect(s) Found: 
-    //Result: Expected:<Tim>. Actual:<Sue>.
-    //Error: This is incorrect because turns <= 0 should mean infinite turns (they should stay in the queue forever). The logic currently treats them as “out of turns” instead of “infinite.”
+    // Defect(s) Found: Expected:<Tim>. Actual:<Sue>.
+    // This is incorrect because turns <= 0 should mean infinite turns (they should stay in the queue forever). The logic currently treats them as “out of turns” instead of “infinite.”
+    //This defect was fixed
     public void TestTakingTurnsQueue_ForeverZero()
     {
         var timTurns = 0;
@@ -119,9 +120,9 @@ public class TakingTurnsQueueTests
     // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
     // Run 10 times.
     // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
-    // Defect(s) Found: 
-    //Result: Assert.AreEqual failed. Expected:<-3>. Actual:<0>. People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite.
-    //Error: When turns was not superior to zero, the program assign it a default value of 0 because I did not assign the paramater turn to Turn variable inside the Person class.
+    // Defect(s) Found: Assert.AreEqual failed. Expected:<-3>. Actual:<0>. People with infinite turns should not have their turns parameter modified to a very big number. A very big number is not infinite.
+    //Error: When turns is <=  0, the program assign it a default value of 0, Turn = 0, because I did not assign the paramater turn to Turn variable inside the Person class.
+    //This defect was fixed
     public void TestTakingTurnsQueue_ForeverNegative()
     {
         var timTurns = -3;
@@ -148,7 +149,7 @@ public class TakingTurnsQueueTests
     [TestMethod]
     // Scenario: Try to get the next person from an empty queue
     // Expected Result: Exception should be thrown with appropriate error message.
-    // Defect(s) Found: 
+    // Defect(s) Found: No defects found
     public void TestTakingTurnsQueue_Empty()
     {
         var players = new TakingTurnsQueue();
