@@ -6,6 +6,24 @@ using NuGet.Frameworks;
 [TestClass]
 public class PriorityQueueTests
 {
+
+    [TestMethod]
+    // Scenario: Two itmes are added to the priority queue to verify that the Enqueue method add item to the back of the queue.
+    // Expected Result: PriorityQueue.Count is supposed to equal to 2 because i added two item to the queue.
+    // Defect(s) Found: No default found
+    public void TestPriorityQueue_0()
+    {
+        var priorityQueue = new PriorityQueue();
+        var item1 = new PriorityItem("item1", 2);
+        var item2 = new PriorityItem("item2", 2);
+
+        priorityQueue.Enqueue(item1.Value, item1.Priority);
+        priorityQueue.Enqueue(item2.Value, item2.Priority);
+
+        var expectedCount = 2;
+        Assert.AreEqual(expectedCount, priorityQueue.QueueCount);
+    }
+
     [TestMethod]
     // Scenario: Create a queue with different value string and different priority numbers to make sure that the returned value from the Dequeue method is always the one with the highest priority.
     // Expected Result: The value return from dequest should be the string "highest"
@@ -24,7 +42,7 @@ public class PriorityQueueTests
         var expectedValue = "highest";
 
         var testDequeue = priorityQueue.Dequeue();
-        Assert.AreEqual( expectedValue, testDequeue);
+        Assert.AreEqual(expectedValue, testDequeue);
     }
 
     [TestMethod]
@@ -62,8 +80,8 @@ public class PriorityQueueTests
 
     [TestMethod]
     // Scenario: Attempt to dequeue from an empty queue.
-// Expected Result: InvalidOperationException with message "The queue is empty."
-// Defect(s) Found: If code returns null or default instead of throwing, this test will fail.
+    // Expected Result: InvalidOperationException with message "The queue is empty."
+    // Defect(s) Found: No default found
     public void TestPriorityQueue_EmptyQueue()
     {
         var priorityQueue = new PriorityQueue();
@@ -78,11 +96,12 @@ public class PriorityQueueTests
             Assert.AreEqual("The queue is empty.", e.Message);
         }
         catch (Exception e)
-            {
-                Assert.Fail(
-                    string.Format("Unexpected exception of type {0} caught: {1}",
-                                    e.GetType(), e.Message)
-                );
-            }
+        {
+            Assert.Fail(
+                string.Format("Unexpected exception of type {0} caught: {1}", e.GetType(), e.Message)
+            );
+        }
     }
-}
+
+
+} 
