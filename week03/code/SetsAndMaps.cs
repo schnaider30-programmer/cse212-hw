@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -22,8 +23,34 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        HashSet<string> wordsSet = new();
+        List<string> pairs = new List<string>(words.Length); 
+        for(int i = 0; i < words.Length; i++)
+        {
+            wordsSet.Add(words[i]);
+            string reversedWord = ReverseWord(words[i]);
+            if (wordsSet.Contains(reversedWord) && words[i] != reversedWord)
+            {
+                string pair = $"{words[i]} & {reversedWord}";
+                pairs.Add(pair);
+            }
+        }
+
+        ;
+        return pairs.ToArray();
     }
+
+    static string ReverseWord(string word)
+    {
+        char[] wordChars = new char[word.Length];
+        for (int i = 0; i < word.Length; i++)
+        {
+            wordChars[i] = word[word.Length - 1 - i];
+        }
+        
+        return new string(wordChars);
+    }
+
 
     /// <summary>
     /// Read a census file and summarize the degrees (education)
@@ -43,6 +70,17 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            string degree = fields[3];
+            int sum = 1;
+            if (!degrees.ContainsKey(degree))
+            {
+                degrees[degree] = sum;
+            }
+            else
+            {
+                
+                degrees[degree] += 1;
+            }
         }
 
         return degrees;
@@ -66,9 +104,61 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        string clean1 = CleanText(word1); 
+        string clean2 = CleanText(word2);
+
+        if (clean1.Length != clean2.Length)
+        {
+            return false;
+        }
+
+        Dictionary<char, int> letters = new();
+
+        for (int i = 0; i < clean1.Length; i++)
+        {
+            if (!letters.ContainsKey(clean1[i]))
+            {
+                letters[clean1[i]] = 1;
+            }
+            else if (letters.ContainsKey(clean1[i]))
+            {
+                letters[clean1[i]] += 1;
+            }
+        }
+        
+        foreach(char letter in clean2)
+        {
+            if (!letters.ContainsKey(letter))
+                return false;
+
+            letters[letter] -= 1;
+
+            if(letters[letter] < 0)
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
+
+    private static string CleanText(string text)
+    {
+        char[] letters = new char[text.Length];
+        int index = 0;
+
+        foreach (char let in text)
+        {
+            if (let != ' ')
+            {
+                letters[index] = char.ToLower(let);
+                index++;
+            }
+        }
+        
+        return new string(letters, 0, index);
+    }
+
 
     /// <summary>
     /// This function will read JSON (Javascript Object Notation) data from the 
@@ -94,13 +184,26 @@ public static class SetsAndMaps
         var json = reader.ReadToEnd();
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
+
+
         var featureCollection = JsonSerializer.Deserialize<FeatureCollection>(json, options);
+        int length = featureCollection.Features.Count;
+        string[] summary = new string[length];
+        int index = 0;
+        foreach (Feature feature in featureCollection.Features)
+        {
+            Properties properties = feature.Properties;
+            string Place = properties.Place;
+            double? Mag = properties.Mag;
+            summary[index] = $"{Place} - Mag {Mag}";
+            index++;
+        }
 
         // TODO Problem 5:
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
-        return [];
+        return summary;
     }
 }
