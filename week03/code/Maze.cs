@@ -39,7 +39,7 @@ public class Maze
         if (!validMoves[0])
             throw new InvalidOperationException("Can't go that way!");
 
-        _currX--;      
+        _currX--;
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public class Maze
 
         if (!validMoves[2])
             throw new InvalidOperationException("Can't go that way!");
- 
+
         _currY--;
     }
 

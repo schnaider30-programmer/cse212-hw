@@ -9,4 +9,4 @@ internal class Program
         Console.WriteLine("Complex Stack Solution");
         ComplexStackSolution.Run();
     }
-} 
+}

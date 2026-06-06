@@ -9,13 +9,13 @@ public static class Arrays
     public static double[] MultiplesOf(double number, int length)
     {
 
-    /* 
-        Step One -> Create a fixed array with the length parameter as it size to contain the multiples of the base number
-        Step two ->  Initialize an index variable to add the values into the array, 
-            this variable must be incrementd with new value addes
-        Step three ->  Make a loop to multiply the base number until the length provided
-        Step four ->  Return the array
-    */
+        /* 
+            Step One -> Create a fixed array with the length parameter as it size to contain the multiples of the base number
+            Step two ->  Initialize an index variable to add the values into the array, 
+                this variable must be incrementd with new value addes
+            Step three ->  Make a loop to multiply the base number until the length provided
+            Step four ->  Return the array
+        */
 
         // Create a fixed array with the length parameter as it size 
         double[] multiples = new double[length];
@@ -43,15 +43,15 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-    /* 
-        First step -> Initialize three variables to contain:
-            1) a new list with the items to rotate
-            2) the starting position of this(ese) item(s)
-            3) the position to insert these item when they are being moved in the list
-        Second step -> Find and Store the items in the new list
-        Third Step -> Remove the items that were stored from the primary list of data with a loop
-        Last step -> Insert them at a choosing position (0 in this case) of the primary list with a loop
-    */
+        /* 
+            First step -> Initialize three variables to contain:
+                1) a new list with the items to rotate
+                2) the starting position of this(ese) item(s)
+                3) the position to insert these item when they are being moved in the list
+            Second step -> Find and Store the items in the new list
+            Third Step -> Remove the items that were stored from the primary list of data with a loop
+            Last step -> Insert them at a choosing position (0 in this case) of the primary list with a loop
+        */
 
         // A new list with the items to rotate
         List<int> firstHalf = [];
@@ -59,7 +59,7 @@ public static class Arrays
         // The starting position of this(ese) item(s)
         //amount parameter is the key to find how many items are to be rotated
         int index = data.Count - amount;
-        
+
         //The position to insert these item when they are being moved in the list        
         int insertPosition = 0;
 
@@ -71,9 +71,9 @@ public static class Arrays
         {
             data.RemoveAt(i);
         }
-        
+
         // Insert these items at a choosing position (0 in this case) of the primary list with a loop
-        foreach(int item in firstHalf)
+        foreach (int item in firstHalf)
         {
             data.Insert(insertPosition, item);
             insertPosition++;

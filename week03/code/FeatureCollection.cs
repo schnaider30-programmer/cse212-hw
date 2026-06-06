@@ -1,6 +1,6 @@
 public class FeatureCollection
 {
-        public List<Feature> Features { get; set; }
+    public List<Feature> Features { get; set; }
 }
 
 public class Feature

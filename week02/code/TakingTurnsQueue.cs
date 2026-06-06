@@ -40,7 +40,7 @@ public class TakingTurnsQueue
         else
         {
             Person person = _people.Dequeue();
-            if(person.IsInfinite)
+            if (person.IsInfinite)
             {
                 _people.Enqueue(person);
             }

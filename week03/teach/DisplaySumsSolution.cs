@@ -2,7 +2,7 @@
 {
     public static void Run()
     {
-        DisplaySumPairs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);  
+        DisplaySumPairs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         // Should show something like (order does not matter):
         // 6 4
         // 7 3
@@ -10,7 +10,7 @@
         // 9 1 
 
         Console.WriteLine("------------");
-        DisplaySumPairs([-20, -15, -10, -5, 0, 5, 10, 15, 20]);  
+        DisplaySumPairs([-20, -15, -10, -5, 0, 5, 10, 15, 20]);
         // Should show something like (order does not matter):
         // 10 0
         // 15 -5
@@ -40,7 +40,7 @@
             // I have previously seen a number that will sum with n 
             // to equal 10. Print out that pair
             if (valuesSeen.Contains(10 - n))
-                Console.WriteLine($"{n} {10-n}");
+                Console.WriteLine($"{n} {10 - n}");
             // Add this number to the values_seen set
             valuesSeen.Add(n);
         }

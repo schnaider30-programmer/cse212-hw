@@ -8,7 +8,7 @@ public class Person
     {
         Name = name;
         Turns = turns;
-    
+
         if (turns > 0)
         {
             IsInfinite = false;
@@ -16,7 +16,7 @@ public class Person
         else
         {
             IsInfinite = true;
-            
+
         }
     }
 

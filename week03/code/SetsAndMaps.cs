@@ -24,8 +24,8 @@ public static class SetsAndMaps
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
         HashSet<string> wordsSet = new();
-        List<string> pairs = new List<string>(words.Length); 
-        for(int i = 0; i < words.Length; i++)
+        List<string> pairs = new List<string>(words.Length);
+        for (int i = 0; i < words.Length; i++)
         {
             wordsSet.Add(words[i]);
             string reversedWord = ReverseWord(words[i]);
@@ -47,7 +47,7 @@ public static class SetsAndMaps
         {
             wordChars[i] = word[word.Length - 1 - i];
         }
-        
+
         return new string(wordChars);
     }
 
@@ -78,7 +78,7 @@ public static class SetsAndMaps
             }
             else
             {
-                
+
                 degrees[degree] += 1;
             }
         }
@@ -104,7 +104,7 @@ public static class SetsAndMaps
     /// </summary>
     public static bool IsAnagram(string word1, string word2)
     {
-        string clean1 = CleanText(word1); 
+        string clean1 = CleanText(word1);
         string clean2 = CleanText(word2);
 
         if (clean1.Length != clean2.Length)
@@ -125,20 +125,20 @@ public static class SetsAndMaps
                 letters[clean1[i]] += 1;
             }
         }
-        
-        foreach(char letter in clean2)
+
+        foreach (char letter in clean2)
         {
             if (!letters.ContainsKey(letter))
                 return false;
 
             letters[letter] -= 1;
 
-            if(letters[letter] < 0)
+            if (letters[letter] < 0)
             {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -155,7 +155,7 @@ public static class SetsAndMaps
                 index++;
             }
         }
-        
+
         return new string(letters, 0, index);
     }
 

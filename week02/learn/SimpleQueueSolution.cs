@@ -1,5 +1,7 @@
-﻿public class SimpleQueueSolution {
-    public static void Run() {
+﻿public class SimpleQueueSolution
+{
+    public static void Run()
+    {
         // Test Cases
 
         // Test 1
@@ -37,11 +39,13 @@
         // Expected Result: An exception should be raised
         Console.WriteLine("Test 3");
         queue = new SimpleQueueSolution();
-        try {
+        try
+        {
             queue.Dequeue();
             Console.WriteLine("Oops ... This shouldn't have worked.");
         }
-        catch (IndexOutOfRangeException) {
+        catch (IndexOutOfRangeException)
+        {
             Console.WriteLine("I got the exception as expected.");
         }
         // Defect(s) Found: None :)
@@ -53,7 +57,8 @@
     /// Enqueue the value provided into the queue
     /// </summary>
     /// <param name="value">Integer value to add to the queue</param>
-    private void Enqueue(int value) {
+    private void Enqueue(int value)
+    {
         _queue.Add(value); // Defect 2 - Need to add to the end of the queue
     }
 
@@ -62,7 +67,8 @@
     /// </summary>
     /// <exception cref="IndexOutOfRangeException">If queue is empty</exception>
     /// <returns>First integer in the queue</returns>
-    private int Dequeue() {
+    private int Dequeue()
+    {
         if (_queue.Count <= 0)
             throw new IndexOutOfRangeException();
 

@@ -28,7 +28,7 @@
         int count = 0;
 
         HashSet<int> numberSet = new();
-        foreach(int num in data)
+        foreach (int num in data)
         {
             if (numberSet.Contains(num))
             {
