@@ -9,9 +9,11 @@ public class Node
         this.Data = data;
     }
 
-    public void Insert(int value)
+    public void Insert(int value)   
     {
         // TODO Start Problem 1
+        if (value == Data)
+            return;
 
         if (value < Data)
         {
@@ -29,11 +31,27 @@ public class Node
             else
                 Right.Insert(value);
         }
+    
     }
 
     public bool Contains(int value)
     {
         // TODO Start Problem 2
+        if (Data == value)
+            return true;
+
+        if (value < Data)
+        {
+            if (Left is not null)
+                return Left.Contains(value);
+        }
+        else
+        {
+            if (Right is not null)
+            {
+                return Right.Contains(value);
+            }
+        }
         return false;
     }
 
